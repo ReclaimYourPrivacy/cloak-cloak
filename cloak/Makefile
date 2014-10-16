@@ -17,7 +17,7 @@ define Package/cloak
   SECTION:=utils
   CATEGORY:=Cloak
   TITLE:=Default Cloak Configurations
-  DEPENDS:=+base-files +luci +luci-proto-3g +luci-proto-ipv6 +luci-proto-ppp +6in4 +6rd +6to4 +batctl +curl +ip +kmod-batman-adv +kmod-usb-serial +kmod-usb-serial-option +hostapd +hostapd-utils +wpa-supplicant +iwinfo +avahi-daemon +avahi-utils
+  DEPENDS:=+base-files +luci +luci-proto-3g +luci-proto-ipv6 +luci-proto-ppp +6in4 +6rd +6to4 +batctl +curl +ip +kmod-batman-adv +kmod-usb-serial +kmod-usb-serial-option +hostapd-utils +wpa-supplicant +iwinfo +avahi-daemon +avahi-utils
 endef
 
 define Package/cloak/conffiles
