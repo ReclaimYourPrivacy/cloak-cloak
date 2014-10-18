@@ -30,17 +30,11 @@ endef
 
 define Package/cloak/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_DIR) $(1)/etc/hotplug.d
-	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
-	$(INSTALL_DIR) $(1)/usr
-	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_CONF) ./files/etc/shadow $(1)/etc
 	$(INSTALL_CONF) ./files/etc/banner $(1)/etc
-	$(INSTALL_BIN) ./files/etc/hotplug.d/iface/99-ddnsupdate $(1)/etc/hotplug.d/iface
 	$(INSTALL_BIN) ./files/etc/uci-defaults/70-firewall $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/etc/uci-defaults/70-hostname $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/etc/uci-defaults/70-uhttpd $(1)/etc/uci-defaults
-	$(INSTALL_BIN) ./files/usr/bin/ddnsup $(1)/usr/bin
 endef
 
 $(eval $(call BuildPackage,cloak))

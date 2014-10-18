@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# Copyright 2014 Bright Things Unlimited
+#
+
+if [ `uci get system.@system[0].hostname` == OpenWrt ]; then
+	MACADDR=`ifconfig eth0|grep HWaddr|sed -e 's/^.*HWaddr //g' -e 's/://g'|tr '[ABCDEF]' '[abcdef]'`
+	uci batch <<-EOF
+		set system.@system[0].hostname=cloak-$MACADDR
+		commit system
+	EOF
+fi
+exit 0
