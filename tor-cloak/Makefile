@@ -8,7 +8,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=tor-alpha
+PKG_NAME:=tor-cloak
 PKG_VERSION:=0.2.4.24
 PKG_RELEASE:=1
 
@@ -23,13 +23,13 @@ PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/tor-alpha/Default
+define Package/tor-cloak/Default
   SECTION:=net
   CATEGORY:=Network
   URL:=https://www.torproject.org/
 endef
 
-define Package/tor-alpha/Default/description
+define Package/tor-cloak/Default/description
  Tor is a toolset for a wide range of organizations and people that want to
  improve their safety and security on the Internet. Using Tor can help you
  anonymize web browsing and publishing, instant messaging, IRC, SSH, and
@@ -39,40 +39,40 @@ define Package/tor-alpha/Default/description
  This version contains changes made for OpenWrt
 endef
 
-define Package/tor-alpha
-$(call Package/tor-alpha/Default)
+define Package/tor-cloak
+$(call Package/tor-cloak/Default)
   TITLE:=An anonymous Internet communication system
   DEPENDS:=+libevent2 +libopenssl +libpthread +librt +SSP_SUPPORT:libssp
 endef
 
-define Package/tor-alpha/description
-$(call Package/tor-alpha/Default/description)
+define Package/tor-cloak/description
+$(call Package/tor-cloak/Default/description)
  This package contains the tor daemon.
 endef
 
-define Package/tor-alpha-fw-helper
-$(call Package/tor-alpha/Default)
+define Package/tor-cloak-fw-helper
+$(call Package/tor-cloak/Default)
   TITLE:=Firewall helper for tor
-  DEPENDS:=+tor-alpha +libminiupnpc +libnatpmp
+  DEPENDS:=+tor-cloak +libminiupnpc +libnatpmp
 endef
 
-define Package/tor-alpha-fw-helper/description
-$(call Package/tor-alpha/Default/description)
+define Package/tor-cloak-fw-helper/description
+$(call Package/tor-cloak/Default/description)
  This package contains a helper for automatically configuring port forwarding.
 endef
 
-define Package/tor-alpha-geoip
-$(call Package/tor-alpha/Default)
+define Package/tor-cloak-geoip
+$(call Package/tor-cloak/Default)
   TITLE:=GeoIP db for tor
-  DEPENDS:=+tor-alpha
+  DEPENDS:=+tor-cloak
 endef
 
-define Package/tor-alpha-geoip/description
-$(call Package/tor-alpha/Default/description)
+define Package/tor-cloak-geoip/description
+$(call Package/tor-cloak/Default/description)
  This package contains a GeoIP database mapping IP addresses to countries.
 endef
 
-define Package/tor-alpha/conffiles
+define Package/tor-cloak/conffiles
 /etc/tor/torrc
 endef
 
@@ -98,7 +98,7 @@ endif
 CONFIGURE_VARS += \
 	CROSS_COMPILE="yes"
 
-define Package/tor-alpha/install
+define Package/tor-cloak/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/tor $(1)/usr/sbin/
 	$(INSTALL_DIR) $(1)/etc/init.d
@@ -107,16 +107,16 @@ define Package/tor-alpha/install
 	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/tor/torrc.sample $(1)/etc/tor/torrc
 endef
 
-define Package/tor-alpha-fw-helper/install
+define Package/tor-cloak-fw-helper/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/tor-fw-helper $(1)/usr/bin/
 endef
 
-define Package/tor-alpha-geoip/install
+define Package/tor-cloak-geoip/install
 	$(INSTALL_DIR) $(1)/usr/share/tor
 	$(CP) $(PKG_INSTALL_DIR)/usr/share/tor/geoip $(1)/usr/share/tor/
 endef
 
-$(eval $(call BuildPackage,tor-alpha))
-$(eval $(call BuildPackage,tor-alpha-fw-helper))
-$(eval $(call BuildPackage,tor-alpha-geoip))
+$(eval $(call BuildPackage,tor-cloak))
+$(eval $(call BuildPackage,tor-cloak-fw-helper))
+$(eval $(call BuildPackage,tor-cloak-geoip))
