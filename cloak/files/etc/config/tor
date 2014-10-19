@@ -1,0 +1,8 @@
+
+config core 'main'
+	option SocksPort '0.0.0.0:9050'
+	option VirtualAddrNetwork '10.192.0.0/10'
+	option TransPort '0.0.0.0:9040'
+	option DNSPort '0.0.0.0:9053'
+
+
