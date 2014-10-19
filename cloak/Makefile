@@ -33,9 +33,9 @@ define Package/cloak/conffiles
 /etc/config/wireless
 endef
 
-#define Build/Compile
+define Build/Compile
 	# NOOP
-#endef
+endef
 
 define Package/cloak/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
