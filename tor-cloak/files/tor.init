@@ -31,8 +31,6 @@ update_config() {
 
 start_service() {
 
-	update_config
-
 	user_exists tor 52 || user_add tor 52 52 /var/lib/tor
 	group_exists tor 52 || group_add tor 52
 	[ -f /var/run/tor.pid ] || {
@@ -48,6 +46,8 @@ start_service() {
 		mkdir -m 0755 -p /var/log/tor
 		chown tor:tor /var/log/tor
 	}
+
+	update_config
 
 	procd_open_instance
 	procd_set_param command ${PROG} -f ${TOR_CONFIG}
