@@ -52,9 +52,7 @@ define Package/cloak/install
 	$(INSTALL_CONF) ./files/etc/config/uhttpd $(1)/etc/config/
 	$(INSTALL_CONF) ./files/etc/config/wireless $(1)/etc/config/
 	$(INSTALL_BIN) ./files/etc/banner $(1)/etc/
-	$(INSTALL_BIN) ./files/etc/uci-defaults/70-firewall $(1)/etc/uci-defaults/
 	$(INSTALL_BIN) ./files/etc/uci-defaults/70-hostname $(1)/etc/uci-defaults
-	$(INSTALL_BIN) ./files/etc/uci-defaults/70-uhttpd $(1)/etc/uci-defaults
 endef
 
 $(eval $(call BuildPackage,cloak))

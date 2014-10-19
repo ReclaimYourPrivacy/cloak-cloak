@@ -97,38 +97,3 @@ config forwarding
 config include
 	option path '/etc/firewall.user'
 
-config rule
-	option name 'luci'
-	option src 'wan'
-	option target 'ACCEPT'
-	option proto 'tcp'
-	option dest_port '10000'
-
-config zone
-	option name 'cloaked'
-	option input 'ACCEPT'
-	option forward 'REJECT'
-	option output 'ACCEPT'
-	option network 'cloaked'
-
-config redirect
-	option target 'DNAT'
-	option dest 'cloaked'
-	option proto 'tcp udp'
-	option name 'cloakdns'
-	option src 'cloaked'
-	option src_dport '53'
-	option dest_ip '10.191.0.1'
-	option dest_port '9053'
-
-config redirect
-	option enabled '1'
-	option target 'DNAT'
-	option dest 'cloaked'
-	option name 'cloakfwd'
-	option proto 'tcp'
-	option src 'cloaked'
-	option src_dport '1-65535'
-	option dest_ip '10.191.0.1'
-	option dest_port '9040'
-
