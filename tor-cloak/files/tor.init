@@ -25,7 +25,7 @@ update_config() {
 		AutomapHostsOnResolve 1
 		TransPort ${TransPort}
 		DNSPort ${DNSPort}
-		Log info syslog
+		Log notice syslog
 		MaxMemInCellQueues 512 KB 
 		User tor
 	EOF
