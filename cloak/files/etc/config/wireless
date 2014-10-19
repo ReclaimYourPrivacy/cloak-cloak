@@ -14,7 +14,7 @@ config wifi-iface
 	option device 'radio0'
 	option mode 'ap'
 	option network 'lan'
-	option encryption 'psk2'
+	option encryption 'psk2+ccmp'
 	option key 'cloakaccess'
 	option ssid 'open'
 
