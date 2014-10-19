@@ -61,13 +61,6 @@ config rule
 	option family 'ipv6'
 	option target 'ACCEPT'
 
-config rule
-	option target 'ACCEPT'
-	option src 'wan'
-	option proto 'tcp'
-	option dest_port '22'
-	option name 'ssh'
-
 config defaults
 	option syn_flood '1'
 	option input 'ACCEPT'
