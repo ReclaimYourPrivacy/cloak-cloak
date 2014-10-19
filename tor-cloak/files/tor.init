@@ -1,12 +1,38 @@
 #!/bin/sh /etc/rc.common
-# Copyright (C) 2006-2011 OpenWrt.org
+# Copyright (C) 2014 Bright Things UN Ltd.
 
 START=50
-STOP=50
 
-SERVICE_USE_PID=1
+USE_PROCD=1
 
-start() {
+# Some Constants
+PROG=/usr/sbin/tor
+TOR_DIR=/var/lib/tor
+TOR_CONFIG=${TOR_DIR}/torrc
+
+
+update_config() {
+
+	SocksPort="$(uci_get tor.@core[0].SocksPort)"
+	VirtualAddrNetwork="$(uci_get tor.@core[0].VirtualAddrNetwork)"
+	Transport="$(uci_get tor.@core[0].TransPort)"
+	DNSPort="$(uci_get tor.@core[0].DNSPort)"
+
+	cat <<-EOF >$TOR_CONFIG
+		SocksPort ${SocksPort}
+		DataDirectory ${TOR_DIR}
+		VirtualAddrNetwork ${VirtualAddrNetwork}
+		AutomapHostsOnResolve 1
+		TransPort ${TransPort}
+		DNSPort ${DNSPort}
+	EOF
+
+}
+
+start_service() {
+
+	update_config
+
 	user_exists tor 52 || user_add tor 52 52 /var/lib/tor
 	group_exists tor 52 || group_add tor 52
 	[ -f /var/run/tor.pid ] || {
@@ -22,9 +48,19 @@ start() {
 		mkdir -m 0755 -p /var/log/tor
 		chown tor:tor /var/log/tor
 	}
-	service_start /usr/sbin/tor --PidFile /var/run/tor.pid
+
+	procd_open_instance
+	procd_set_param command ${PROG} -f ${TOR_CONFIG}
+	procd_set_param user tor
+	procd_set_param respawn
+	procd_close_instance
 }
 
-stop() {
-	service_stop /usr/sbin/tor
+service_triggers() {
+	procd_add_reload_trigger "tor"
 }
+
+reload() {
+	service_reload
+}
+

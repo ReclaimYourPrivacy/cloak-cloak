@@ -73,7 +73,7 @@ $(call Package/tor-cloak/Default/description)
 endef
 
 define Package/tor-cloak/conffiles
-/etc/tor/torrc
+/etc/config/tor
 endef
 
 CONFIGURE_ARGS += \
@@ -103,8 +103,7 @@ define Package/tor-cloak/install
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/tor $(1)/usr/sbin/
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/tor.init $(1)/etc/init.d/tor
-	$(INSTALL_DIR) $(1)/etc/tor
-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/tor/torrc.sample $(1)/etc/tor/torrc
+	$(INSTALL_CONF) ./files/tor.config $(1)/etc/config/tor
 endef
 
 define Package/tor-cloak-fw-helper/install
