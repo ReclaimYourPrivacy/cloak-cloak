@@ -38,19 +38,21 @@ define Build/Compile
 endef
 
 define Package/cloak/install
+	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
+	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_CONF) ./files/etc/shadow $(1)/etc
-	$(INSTALL_CONF) ./files/etc/config/dhcp $(1)/etc/config
-	$(INSTALL_CONF) ./files/etc/config/dropbear $(1)/etc/config
-	$(INSTALL_CONF) ./files/etc/config/firewall $(1)/etc/config
-	$(INSTALL_CONF) ./files/etc/config/luci $(1)/etc/config
-	$(INSTALL_CONF) ./files/etc/config/network $(1)/etc/config
-	$(INSTALL_CONF) ./files/etc/config/system $(1)/etc/config
-	$(INSTALL_CONF) ./files/etc/config/tor $(1)/etc/config
-	$(INSTALL_CONF) ./files/etc/config/uhttpd $(1)/etc/config
-	$(INSTALL_CONF) ./files/etc/config/wireless $(1)/etc/config
-	$(INSTALL_BIN) ./files/etc/banner $(1)/etc
-	$(INSTALL_BIN) ./files/etc/uci-defaults/70-firewall $(1)/etc/uci-defaults
+	$(INSTALL_CONF) ./files/etc/config/dhcp $(1)/etc/config/
+	$(INSTALL_CONF) ./files/etc/config/dropbear $(1)/etc/config/
+	$(INSTALL_CONF) ./files/etc/config/firewall $(1)/etc/config/
+	$(INSTALL_CONF) ./files/etc/config/luci $(1)/etc/config/
+	$(INSTALL_CONF) ./files/etc/config/network $(1)/etc/config/
+	$(INSTALL_CONF) ./files/etc/config/system $(1)/etc/config/
+	$(INSTALL_CONF) ./files/etc/config/tor $(1)/etc/config/
+	$(INSTALL_CONF) ./files/etc/config/uhttpd $(1)/etc/config/
+	$(INSTALL_CONF) ./files/etc/config/wireless $(1)/etc/config/
+	$(INSTALL_BIN) ./files/etc/banner $(1)/etc/
+	$(INSTALL_BIN) ./files/etc/uci-defaults/70-firewall $(1)/etc/uci-defaults/
 	$(INSTALL_BIN) ./files/etc/uci-defaults/70-hostname $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/etc/uci-defaults/70-uhttpd $(1)/etc/uci-defaults
 endef
