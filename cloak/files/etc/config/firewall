@@ -83,6 +83,44 @@ config zone
 	option mtu_fix '1'
 	option network 'wan wan6'
 
+config zone                                                                     
+        option name 'cloaked'                                                   
+        option input 'ACCEPT'                                                   
+        option forward 'REJECT'                                                 
+        option output 'ACCEPT'                                                  
+        option network 'cloaked'                                                
+                                                                                
+config redirect                                                                 
+        option target 'DNAT'                                                    
+        option dest 'cloaked'                                                   
+        option proto 'tcp udp'                                                  
+        option name 'cloakdns'                                                  
+        option src 'cloaked'                                                    
+        option src_dport '53'                                                   
+        option dest_ip '10.191.0.1'                                             
+        option dest_port '9053'                                                 
+                                                                                
+config redirect                                                                 
+        option enabled '1'                                                      
+        option target 'DNAT'                                                    
+        option dest 'cloaked'                                                   
+        option name 'cloakfwd'                                                  
+        option proto 'tcp'                                                      
+        option src 'cloaked'                                                    
+        option src_dport '1-65535'                                              
+        option dest_ip '10.191.0.1'                                             
+        option dest_port '9040'
+
+config redirect                     
+        option target 'DNAT'        
+        option dest 'lan'           
+        option dest_ip '10.190.0.1'   
+        option name 'onion'         
+        option src 'lan'            
+        option src_dip '10.192.0.0/10'
+        option dest_port '9040'       
+        option proto 'tcp'
+
 config forwarding
 	option src 'lan'
 	option dest 'wan'
