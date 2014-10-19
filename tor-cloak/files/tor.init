@@ -15,7 +15,7 @@ update_config() {
 
 	SocksPort="$(uci_get tor.@core[0].SocksPort)"
 	VirtualAddrNetwork="$(uci_get tor.@core[0].VirtualAddrNetwork)"
-	Transport="$(uci_get tor.@core[0].TransPort)"
+	TransPort="$(uci_get tor.@core[0].TransPort)"
 	DNSPort="$(uci_get tor.@core[0].DNSPort)"
 
 	cat <<-EOF >$TOR_CONFIG
@@ -25,33 +25,31 @@ update_config() {
 		AutomapHostsOnResolve 1
 		TransPort ${TransPort}
 		DNSPort ${DNSPort}
+		Log info syslog
+		MaxMemInCellQueues 512 KB 
+		User tor
 	EOF
 
 }
 
 start_service() {
 
-	user_exists tor 52 || user_add tor 52 52 /var/lib/tor
+	user_exists tor 52 || user_add tor 52 52 ${TOR_DIR}
 	group_exists tor 52 || group_add tor 52
 	[ -f /var/run/tor.pid ] || {
 		touch /var/run/tor.pid
 		chown tor:tor /var/run/tor.pid
 	}
-	[ -d /var/lib/tor ] || {
-		mkdir -m 0755 -p /var/lib/tor
-		chmod 0700 /var/lib/tor
-		chown tor:tor /var/lib/tor
-	}
-	[ -d /var/log/tor ] || {
-		mkdir -m 0755 -p /var/log/tor
-		chown tor:tor /var/log/tor
+	[ -d ${TOR_DIR} ] || {
+		mkdir -m 0755 -p ${TOR_DIR}
+		chmod 0700 ${TOR_DIR}
+		chown tor:tor ${TOR_DIR}
 	}
 
 	update_config
 
 	procd_open_instance
 	procd_set_param command ${PROG} -f ${TOR_CONFIG}
-	procd_set_param user tor
 	procd_set_param respawn
 	procd_close_instance
 }
