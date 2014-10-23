@@ -41,6 +41,7 @@ define Package/cloak/install
 	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_CONF) ./files/etc/shadow $(1)/etc
 	$(INSTALL_CONF) ./files/etc/config/dhcp $(1)/etc/config/
 	$(INSTALL_CONF) ./files/etc/config/dropbear $(1)/etc/config/
@@ -52,6 +53,7 @@ define Package/cloak/install
 	$(INSTALL_CONF) ./files/etc/config/uhttpd $(1)/etc/config/
 	$(INSTALL_CONF) ./files/etc/config/wireless $(1)/etc/config/
 	$(INSTALL_BIN) ./files/etc/banner $(1)/etc/
+	$(INSTALL_BIN) ./files/etc/init.d/config $(1)/etc/init.d/
 	$(INSTALL_BIN) ./files/etc/uci-defaults/70-hostname $(1)/etc/uci-defaults
 endef
 

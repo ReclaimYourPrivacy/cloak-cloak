@@ -1,0 +1,16 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2014 Bright Things UN Ltd.
+
+START=11
+STOP=97
+
+boot() {
+
+	# Create /config if it does not exist
+	[ -d /config ] || mkdir /config
+
+	# Attempt to mount /dev/mtdblock5 on /config
+	mount /dev/mtdblock5 /config
+
+}
+
