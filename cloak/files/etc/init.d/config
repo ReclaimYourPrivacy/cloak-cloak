@@ -10,12 +10,12 @@ boot() {
 	[ -d /tmp/mtdconfig ] || mkdir /tmp/mtdconfig
 
 	# Attempt to mount /dev/mtdblock5 on /config - exit if impossible
-	[ mount /dev/mtdblock5 /tmp/mtdconfig ] || return 1
+	mount /dev/mtdblock5 /tmp/mtdconfig || return 1
 
 	PASSWD=`cat /etc/shadow | grep root | sed 's/^root://g' | sed 's/:.*$//g'`
 	DEFAULT_PASSWORD=`cat /tmp/mtdconfig/root`
 
-	[ -z "${PASSWD}" ] && echo -e "${DEFAULT_PASSWORD}\n${DEAULT_PASSWORD}" | passwd root >/dev/null
+	[ -z "${PASSWD}" ] && echo -e "${DEFAULT_PASSWORD}\n${DEFAULT_PASSWORD}" | passwd root >/dev/null
 	
 	# Finally unmount and remove the temporary mount point
 	[ umount /tmp/mtdconfig ] && rmdir /tmp/mtdconfig

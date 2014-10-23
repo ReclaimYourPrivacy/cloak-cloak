@@ -8,14 +8,11 @@ config wifi-device 'radio0'
 	option txpower '20'
 	option channel '3'
 
-# Hardcoded wifi keys are temporary!  Will not be used in final version.
-
 config wifi-iface
 	option device 'radio0'
 	option mode 'ap'
 	option network 'lan'
 	option encryption 'psk2+ccmp'
-	option key 'cloakaccess'
 	option ssid 'open'
 
 config wifi-iface
@@ -24,5 +21,4 @@ config wifi-iface
 	option ssid 'cloaked'
 	option network 'cloaked'
 	option encryption 'psk2+ccmp'
-	option key 'cloakaccess'
 
