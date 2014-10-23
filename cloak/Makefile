@@ -21,7 +21,6 @@ define Package/cloak
 endef
 
 define Package/cloak/conffiles
-/etc/shadow
 /etc/config/dhcp
 /etc/config/dropbear
 /etc/config/firewall
@@ -42,7 +41,6 @@ define Package/cloak/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_CONF) ./files/etc/shadow $(1)/etc
 	$(INSTALL_CONF) ./files/etc/config/dhcp $(1)/etc/config/
 	$(INSTALL_CONF) ./files/etc/config/dropbear $(1)/etc/config/
 	$(INSTALL_CONF) ./files/etc/config/firewall $(1)/etc/config/
