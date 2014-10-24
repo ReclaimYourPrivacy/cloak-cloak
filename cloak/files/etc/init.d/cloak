@@ -1,0 +1,42 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2014 Bright Things UN Ltd.
+#
+
+START=13
+
+boot() {
+
+	# Create /tmp/mtdconfig if it does not exist
+	[ -d /tmp/mtdconfig ] || mkdir /tmp/mtdconfig
+
+	# Attempt to mount /dev/mtdblock5 on /config - exit if impossible
+	mount /dev/mtdblock5 /tmp/mtdconfig || return 1
+
+	PASSWD=`cat /etc/shadow | grep root | sed 's/^root://g' | sed 's/:.*$//g'`
+	DEFAULT_PASSWORD=`cat /tmp/mtdconfig/root`
+
+	[ -z "${PASSWD}" ] && echo -e "${DEFAULT_PASSWORD}\n${DEFAULT_PASSWORD}" | passwd root >/dev/null
+
+	OPEN_WIRELESS_DEFAULT_KEY=`cat /tmp/mtdconfig/open`
+
+	# The next section is not pretty - there has got to be a more elegant way of doign that
+
+	# Check key for open wireless
+	if [ "$(uci_get wireless.@wifi-iface[0].ssid)" = "open" -a "$(uci_get wireless.$wifi-iface[0].key)" = "" -a -n "${OPEN_WIRELESS_DEFAULT_KEY}" ]; then
+		uci set wireless.@wifi-iface[0].key=${OPEN_WIRELESS_DEFAULT_KEY}
+		uci commit
+	fi
+	
+	CLOAKED_WIRELESS_DEFAULT_KEY=`cat /tmp/mtdconfig/cloaked`
+
+	# Check key for cloaked wireless
+	if [ "$(uci_get wireless.@wifi-iface[1].ssid)" = "cloaked" -a "$(uci_get wireless.$wifi-iface[1].key)" = "" -a -n "${CLOAKED_WIRELESS_DEFAULT_KEY}" ]; then
+		uci set wireless.@wifi-iface[1].key=${CLOAKED_WIRELESS_DEFAULT_KEY}
+		uci commit
+	fi
+	
+	# Finally unmount and remove the temporary mount point
+	umount /tmp/mtdconfig && rmdir /tmp/mtdconfig
+
+}
+
