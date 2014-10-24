@@ -1,3 +1,11 @@
+# 
+# The top rules are OpenWrt standard.  I _am_ aware that some people consider 
+# ping a security risk, but I generally agree with OpenWrt that the benefits
+# as a network debugging tool far outweighs the security risk.  I am however
+# also quite willing to take a discussion on this topic if someone has got
+# strong reasons for disabling.  Feel free to write to: 
+# lth@reclaim-your-privacy.com.
+#
 
 config rule
 	option name 'Allow-DHCP-Renew'

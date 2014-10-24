@@ -1,3 +1,8 @@
+# 
+# Cloak default network config.  LAN uses 10.190.0.0/16 and Cloaked uses 
+# 10.191.0.0/16.  The rest of the 10 network (10.192.0.0/10) is used by 
+# Tor.
+#
 
 config interface 'loopback'
 	option ifname 'lo'
