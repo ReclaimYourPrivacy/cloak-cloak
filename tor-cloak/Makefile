@@ -10,13 +10,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tor-cloak
-PKG_VERSION:=0.2.4.24
+PKG_VERSION:=0.2.5.8-rc
 PKG_RELEASE:=1
 
 PKG_SOURCE:=tor-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.torproject.org/dist \
 	https://archive.torproject.org/tor-package-archive
-PKG_MD5SUM:=9acb86b529f0f48cc495da3801f85d1f
+PKG_MD5SUM:=f72f4a9647b0e5ce01c7f126f6e54beb
 
 PKG_BUILD_DEPENDS:=libminiupnpc libnatpmp
 PKG_BUILD_DIR:=$(BUILD_DIR)/tor-$(PKG_VERSION)
