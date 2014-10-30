@@ -14,8 +14,7 @@ PKG_VERSION:=0.2.5.8-rc
 PKG_RELEASE:=1
 
 PKG_SOURCE:=tor-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://www.torproject.org/dist \
-	https://archive.torproject.org/tor-package-archive
+PKG_SOURCE_URL:=https://archive.torproject.org/tor-package-archive
 PKG_MD5SUM:=f72f4a9647b0e5ce01c7f126f6e54beb
 
 PKG_BUILD_DEPENDS:=libminiupnpc libnatpmp
@@ -37,7 +36,7 @@ define Package/tor-cloak/Default/description
  more. Tor also provides a platform on which software developers can build
  new applications with built-in anonymity, safety, and privacy features.
 
- This version contains changes made for OpenWrt
+ This version contains changes made for Cloak
 endef
 
 define Package/tor-cloak
