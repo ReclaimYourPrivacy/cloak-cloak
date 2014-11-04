@@ -23,7 +23,7 @@ update_config() {
 		DataDirectory ${TOR_DIR}
 		VirtualAddrNetwork ${VirtualAddrNetwork}
 		AutomapHostsOnResolve 1
-		TransPort ${TransPort}
+		TransPort ${TransPort} IsolateDestPort IsolateDestAddr
 		DNSPort ${DNSPort}
 		Log notice syslog
 		MaxMemInCellQueues 512 KB 
