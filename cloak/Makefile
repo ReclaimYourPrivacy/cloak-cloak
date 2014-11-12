@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2014 Bright Things Ltd. All right reserved.
+# Copyright (c) 2014 Bright Things UN Ltd.
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
