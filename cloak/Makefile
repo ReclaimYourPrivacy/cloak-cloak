@@ -17,7 +17,7 @@ define Package/cloak
   SECTION:=utils
   CATEGORY:=Cloak
   TITLE:=Default Cloak Configurations
-  DEPENDS:=+base-files +luci +luci-proto-3g +luci-proto-ipv6 +luci-proto-ppp +6in4 +6rd +6to4 +curl +ip +kmod-usb-serial +kmod-usb-serial-option +iwinfo +avahi-dbus-daemon +avahi-utils +block-mount +chat +comgt +kmod-fs-vfat +kmod-nls-cp437 +kmod-nls-cp850 +kmod-nls-iso8859-1 +kmod-nls-utf8 +pptp +kmod-usb-storage +kmod-usb-storage-extras +tor-cloak
+  DEPENDS:=+base-files +luci +luci-proto-3g +luci-proto-ipv6 +luci-proto-ppp +6in4 +6to4 +curl +ip +kmod-usb-serial +iwinfo +avahi-dbus-daemon +block-mount +chat +comgt +kmod-fs-vfat +kmod-nls-cp437 +kmod-nls-cp850 +kmod-nls-iso8859-1 +kmod-nls-utf8 +pptp +kmod-usb-storage +kmod-usb-storage-extras +tor-cloak
 endef
 
 define Package/cloak/conffiles
