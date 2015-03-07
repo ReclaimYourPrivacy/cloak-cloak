@@ -119,16 +119,6 @@ config redirect
         option dest_ip '10.191.0.1'                                             
         option dest_port '9040'
 
-config redirect                     
-        option target 'DNAT'        
-        option dest 'lan'           
-        option dest_ip '10.190.0.1'   
-        option name 'onion'         
-        option src 'lan'            
-        option src_dip '10.192.0.0/10'
-        option dest_port '9040'       
-        option proto 'tcp'
-
 config forwarding
 	option src 'lan'
 	option dest 'wan'

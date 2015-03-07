@@ -14,7 +14,6 @@ config dnsmasq
 	option readethers '1'
 	option leasefile '/tmp/dhcp.leases'
 	option resolvfile '/tmp/resolv.conf.auto'
-	list server '/onion/127.0.0.1#9053'
 
 config dhcp 'lan'
 	option interface 'lan'
