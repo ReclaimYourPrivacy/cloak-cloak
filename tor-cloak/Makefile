@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2014 Bright Things UN Ltd.
+# Copyright (C) 2014 Bright-Things.com
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tor-cloak
-PKG_VERSION:=0.2.5.10
+PKG_VERSION:=0.2.5.11
 PKG_RELEASE:=1
 
 PKG_SOURCE:=tor-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.torproject.org/dist \
 	https://archive.torproject.org/tor-package-archive
-PKG_MD5SUM:=4bde375229a7a7f77c0596ae05556527
+PKG_MD5SUM:=9ca64f76996cb8a750e50c792e2c4c52
 
 PKG_BUILD_DEPENDS:=libminiupnpc libnatpmp
 PKG_BUILD_DIR:=$(BUILD_DIR)/tor-$(PKG_VERSION)
